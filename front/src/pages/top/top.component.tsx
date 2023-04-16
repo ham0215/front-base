@@ -17,7 +17,7 @@ export function Top() {
     <>
       {
         edit ? (
-          <Human
+          <EditHuman
             data={data}
           />
         ) : (
