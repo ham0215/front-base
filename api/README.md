@@ -1,5 +1,5 @@
 # API
-[Rust](https://www.rust-lang.org/) / [juniper](https://github.com/graphql-rust/juniper)
+[Rust](https://www.rust-lang.org/) / [juniper](https://github.com/graphql-rust/juniper) / [actix-web](https://github.com/actix/actix-web)
 
 future
 
