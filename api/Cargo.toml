@@ -7,9 +7,10 @@ edition = "2021"
 
 [dependencies]
 actix-cors = "0.6.4"
-actix-web = "4.3.1"
+actix-web = { version = "4.3.1", features = ["openssl"] }
 actix-web-lab = "0.19.1"
 juniper = "0.15.11"
+openssl = "0.10.50"
 
 [[bin]]
 name = "api"

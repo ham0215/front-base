@@ -4,3 +4,15 @@
 future
 
 * [Turborepo](https://turbo.build/repo/docs)
+
+## GraphiQL
+
+https://localhost:8080/graphiql
+
+## Certificate for localhost
+
+```
+$ brew install mkcert
+$ mkcert -install
+$ mkcert localhost
+```

@@ -12,6 +12,7 @@ use actix_web::{
 };
 use actix_web_lab::respond::Html;
 use juniper::http::{graphiql::graphiql_source, GraphQLRequest};
+use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 
 mod schema;
 
@@ -35,6 +36,12 @@ async fn main() -> io::Result<()> {
     // Create Juniper schema
     let schema = Arc::new(create_schema());
 
+    let mut builder = SslAcceptor::mozilla_modern_v5(SslMethod::tls_server()).unwrap();
+    builder
+        .set_private_key_file("localhost-key.pem", SslFiletype::PEM)
+        .unwrap();
+    builder.set_certificate_chain_file("localhost.pem").unwrap();
+
     // Start HTTP server
     HttpServer::new(move || {
         App::new()
@@ -46,7 +53,7 @@ async fn main() -> io::Result<()> {
             .wrap(middleware::Logger::default())
     })
     .workers(2)
-    .bind(("127.0.0.1", 8080))?
+    .bind_openssl("0.0.0.0:8080", builder)?
     .run()
     .await
 }
