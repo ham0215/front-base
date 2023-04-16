@@ -9,6 +9,7 @@ export function Top() {
     edit,
     handleStartEdit,
     handleEndEdit,
+    handleUpdateHuman,
   } = useTop();
 
   if (loading) return <p>Loading...</p>;
@@ -21,6 +22,7 @@ export function Top() {
           <EditHuman
             name={data?.human.name}
             onEndEdit={handleEndEdit}
+            onUpdateHuman={handleUpdateHuman}
           />
         ) : (
           <Human

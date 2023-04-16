@@ -3,10 +3,11 @@ import { useEditHuman } from "./edit-human.presenter";
 type Props = {
   name?: string;
   onEndEdit?: () => void;
+  onUpdateHuman?: ({ id, name }: { id: string, name: string }) => void;
 };
 
-export function EditHuman({ name, onEndEdit }: Props) {
-  const { register, onSubmit } = useEditHuman({ name, onEndEdit });
+export function EditHuman({ name, onEndEdit, onUpdateHuman }: Props) {
+  const { register, onSubmit } = useEditHuman({ name, onEndEdit, onUpdateHuman });
 
   return (
     <form onSubmit={onSubmit}>

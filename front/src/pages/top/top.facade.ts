@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 import { useCallback, useState } from 'react';
 
 type HumanType = {
@@ -17,11 +17,21 @@ const GET_HUMAN = gql`
   }
 `;
 
+const UPDATE_HUMAN = gql`
+  mutation UpdateHuman($id: String!, $name: String!) {
+    updateHuman(id: $id, name: $name) {
+      id
+      name
+    }
+  }
+`;
+
 export function useTop() {
   const [edit, setEdit] = useState(false);
   const { loading, error, data } = useQuery<HumanType>(GET_HUMAN, {
     variables: { id: '1000' },
   });
+  const [updateHuman] = useMutation(UPDATE_HUMAN);
 
   const handleStartEdit = useCallback(() => {
     setEdit(true);
@@ -31,6 +41,15 @@ export function useTop() {
     setEdit(false);
   }, []);
 
+  const handleUpdateHuman = useCallback(({ id, name }: { id: string, name: string }) => {
+    updateHuman({
+      variables: {
+        id,
+        name,
+      },
+    });
+  }, [updateHuman]);
+
   return {
     loading,
     error,
@@ -38,5 +57,6 @@ export function useTop() {
     edit,
     handleStartEdit,
     handleEndEdit,
+    handleUpdateHuman,
   } as const;
 }
