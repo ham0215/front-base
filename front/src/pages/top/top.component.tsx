@@ -18,17 +18,11 @@ export function Top() {
       {
         edit ? (
           <Human
-            loading={loading}
-            error={error}
             data={data}
-            edit={edit}
           />
         ) : (
           <Human
-            loading={loading}
-            error={error}
             data={data}
-            edit={edit}
             onStartEdit={handleStartEdit}
           />
         )

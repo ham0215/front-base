@@ -1,4 +1,4 @@
-import { Top } from './components/top';
+import { Top } from './pages/top';
 import { ApolloProvider, gql } from '@apollo/client';
 import { client } from './apollo/client';
 
