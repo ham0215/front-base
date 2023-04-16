@@ -29,9 +29,13 @@ const UPDATE_HUMAN = gql`
 export function useTop() {
   const [edit, setEdit] = useState(false);
   const { loading, error, data } = useQuery<HumanType>(GET_HUMAN, {
-    variables: { id: '1000' },
+    variables: { id: '1234' },
   });
-  const [updateHuman] = useMutation(UPDATE_HUMAN);
+  const [updateHuman] = useMutation(UPDATE_HUMAN, {
+    // onCompleted: () => {
+    //   refetch();
+    // },
+  });
 
   const handleStartEdit = useCallback(() => {
     setEdit(true);
