@@ -1,29 +1,11 @@
-import { gql, useQuery } from '@apollo/client';
-
-const GET_HUMAN = gql`
-  query Human($id: String!) {
-    human(id: $id) {
-      id
-      name
-    }
-  }
-`;
+import { Top } from './components/top';
+import { ApolloProvider, gql } from '@apollo/client';
+import { client } from './apollo/client';
 
 export function App() {
-  const { loading, error, data } = useQuery(GET_HUMAN, {
-    variables: { id: '1000' },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :</p>;
-
-  console.log(data);
-
   return (
-    <p>
-      {data.human.id}
-      <br />
-      {data.human.name}
-    </p>
-  )
+    <ApolloProvider client={client}>
+      <Top />
+    </ApolloProvider>
+  );
 }
