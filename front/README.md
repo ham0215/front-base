@@ -1,7 +1,7 @@
-# front
+# Front
 React / Typescript / Apollo / Vite
 
-## certificate for localhost
+## Certificate for localhost
 
 ```
 $ brew install mkcert
