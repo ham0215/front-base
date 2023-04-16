@@ -5,8 +5,6 @@ const GET_HUMAN = gql`
     human(id: $id) {
       id
       name
-      appearsIn
-      homePlanet
     }
   }
 `;
@@ -23,8 +21,9 @@ export function App() {
 
   return (
     <p>
-      hoge
       {data.human.id}
+      <br />
+      {data.human.name}
     </p>
   )
 }
